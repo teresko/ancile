@@ -1,0 +1,29 @@
+{
+    "name": "teresko/ancile",
+    "type": "library",
+    "homepage": "https://github.com/teresko/ancile",
+    "license": "BSD-3-Clause",
+    "description": "RBAC authorization component",
+    "keywords": ["authorization", "rbac", "roles", "auth", "acl"],
+
+    "authors": [
+        {
+        "name": "Mārtiņš Tereško",
+        "email": "martins.teresko@gmail.com",
+        "role": "Developer"
+        }
+    ],
+
+    "require": {
+        "php": ">=7.0",
+        "ext-pdo": "*",
+        "psr/log": "1.*"
+    },
+    "autoload": {
+        "psr-4": { "": "src/" }
+    },
+    "require-dev": {
+        "ext-pdo_sqlite": "*",
+        "phpunit/phpunit": "^6.1"
+    }
+}
