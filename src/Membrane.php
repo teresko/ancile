@@ -2,7 +2,7 @@
 
 namespace Ancile;
 
-use Ancile\Service\AccessControl;
+use Ancile\AccessControl;
 use Ancile\Exception\AccessDenied;
 use Ancile\Exception\MethodNotFound;
 
