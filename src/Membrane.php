@@ -10,23 +10,28 @@ class Membrane
 {
 
     private $instance;
-    private $control;
+    private $service;
+    private $accountId;
 
-    public function __construct($instance, AccessControl $control)
+
+    public function __construct($instance, AccessControl $service, $accountId)
     {
         $this->instance = $instance;
-        $this->control = $control;
+        $this->service = $service;
+        $this->accountId = $accountId;
     }
 
 
     public function __call($method, $arguments)
     {
-        if (!$this->control->isAllowed(get_class($this->instance))) {
-            throw new AccessDenied;
-        }
-
         if (!method_exists($this->instance, $method)) {
             throw new MethodNotFound;
+        }
+
+        $signature = get_class($this->instance) . '::' . $method;
+
+        if (!$this->service->isAllowedForAccountId($signature, $this->accountId)) {
+            throw new AccessDenied;
         }
 
         return call_user_func_array([$this->instance, $method], $arguments);
